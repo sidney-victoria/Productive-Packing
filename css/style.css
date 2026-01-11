@@ -1,7 +1,7 @@
 :root {
-  --blue: #eaf3fb;
-  --yellow: #fff3c4;
-  --accent: #f4c7dc;
+  --blue: #eef5fb;
+  --yellow: #fff5cc;
+  --accent: #f3c6da;
   --text: #3a3a3a;
 }
 
@@ -11,28 +11,29 @@
 
 body {
   margin: 0;
-  font-family: 'Quicksand', sans-serif;
   background: var(--blue);
   color: var(--text);
+  font-family: 'Montserrat', sans-serif;
 }
 
+/* Header */
 header {
   text-align: center;
   padding: 3rem 1rem 2rem;
 }
 
 header h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.2rem;
+  letter-spacing: 0.03em;
 }
 
 .tagline {
-  font-size: 1.1rem;
-  opacity: 0.8;
+  font-size: 1.05rem;
+  opacity: 0.75;
 }
 
-/* 🎟️ Category Tickets */
+/* Ticket Row */
 .category-row {
   overflow-x: auto;
   padding: 1.5rem;
@@ -45,15 +46,20 @@ header h1 {
 }
 
 .ticket {
-  min-width: 200px;
-  padding: 1.5rem;
+  min-width: 220px;
+  padding: 1.6rem;
   background: var(--yellow);
-  border-radius: 16px;
+  border-radius: 18px;
   text-align: center;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   position: relative;
+  transition: transform 0.2s ease;
+}
+
+.ticket:hover {
+  transform: translateY(-4px);
 }
 
 .ticket::before,
@@ -75,68 +81,76 @@ header h1 {
   outline: 3px dashed var(--accent);
 }
 
-/* 📦 Packing List */
+/* Packing List Card */
 .packing-list {
-  max-width: 500px;
-  margin: 2rem auto;
+  max-width: 520px;
+  margin: 2.5rem auto;
   background: white;
-  padding: 2rem;
-  border-radius: 24px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  padding: 2.2rem;
+  border-radius: 26px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
 
+.packing-list h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Add Item */
 .add-item {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
 }
 
 .add-item input {
   flex: 1;
-  padding: 0.7rem;
-  border-radius: 12px;
+  padding: 0.75rem 0.9rem;
+  border-radius: 14px;
   border: 1px solid #ddd;
+  font-size: 0.95rem;
 }
 
 .add-item button {
   background: var(--accent);
   border: none;
-  padding: 0.7rem 1rem;
-  border-radius: 12px;
+  padding: 0.75rem 1.1rem;
+  border-radius: 14px;
   cursor: pointer;
   font-weight: 600;
 }
 
-/* 🫧 Bubble Checkboxes */
+/* List Items */
 li {
   list-style: none;
-  margin: 0.7rem 0;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.9rem;
+  margin: 0.8rem 0;
 }
 
+/* Bubble Checkbox */
 .checkbox {
   width: 26px;
   height: 26px;
   border-radius: 50%;
   border: 2px solid var(--accent);
   cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
 .checkbox.checked {
   background: var(--accent);
-  animation: pop 0.3s ease;
+  animation: bounce 0.3s ease;
 }
 
-@keyframes pop {
+@keyframes bounce {
   0% { transform: scale(1); }
-  50% { transform: scale(1.3); }
+  40% { transform: scale(1.35); }
   100% { transform: scale(1); }
 }
 
-.checked + span {
+.checked-text {
   text-decoration: line-through;
   opacity: 0.6;
 }
