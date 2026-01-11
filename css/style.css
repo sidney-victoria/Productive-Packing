@@ -11,10 +11,14 @@
 
 body {
   margin: 0;
-  background: var(--blue);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.6), transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(255,255,255,0.4), transparent 35%),
+    var(--blue);
   color: var(--text);
   font-family: 'Montserrat', sans-serif;
 }
+
 
 /* Header */
 header {
@@ -37,7 +41,10 @@ header h1 {
 .category-row {
   overflow-x: auto;
   padding: 1.5rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
+
 
 .categories {
   display: flex;
@@ -56,6 +63,11 @@ header h1 {
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   position: relative;
   transition: transform 0.2s ease;
+  scroll-snap-align: start;
+}
+
+.category-row::-webkit-scrollbar {
+  display: none;
 }
 
 .ticket:hover {
