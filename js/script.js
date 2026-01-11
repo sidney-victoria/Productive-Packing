@@ -2,27 +2,49 @@ const list = document.getElementById("list");
 const input = document.getElementById("itemInput");
 const addBtn = document.getElementById("addBtn");
 
-addBtn.addEventListener("click", addItem);
+let items = JSON.parse(localStorage.getItem("collegeList")) || [];
 
-function addItem() {
+function saveItems() {
+  localStorage.setItem("collegeList", JSON.stringify(items));
+}
+
+function renderList() {
+  list.innerHTML = "";
+
+  items.forEach((item, index) => {
+    const li = document.createElement("li");
+
+    const checkbox = document.createElement("div");
+    checkbox.className = "checkbox";
+    if (item.checked) checkbox.classList.add("checked");
+
+    const text = document.createElement("span");
+    text.textContent = item.text;
+    if (item.checked) text.classList.add("checked-text");
+
+    checkbox.addEventListener("click", () => {
+      items[index].checked = !items[index].checked;
+      saveItems();
+      renderList();
+    });
+
+    li.appendChild(checkbox);
+    li.appendChild(text);
+    list.appendChild(li);
+  });
+}
+
+addBtn.addEventListener("click", () => {
   if (!input.value.trim()) return;
 
-  const li = document.createElement("li");
-
-  const checkbox = document.createElement("div");
-  checkbox.classList.add("checkbox");
-
-  const text = document.createElement("span");
-  text.textContent = input.value;
-
-  checkbox.addEventListener("click", () => {
-    checkbox.classList.toggle("checked");
-    text.classList.toggle("checked");
+  items.push({
+    text: input.value,
+    checked: false
   });
 
-  li.appendChild(checkbox);
-  li.appendChild(text);
-  list.appendChild(li);
-
   input.value = "";
-}
+  saveItems();
+  renderList();
+});
+
+renderList();
